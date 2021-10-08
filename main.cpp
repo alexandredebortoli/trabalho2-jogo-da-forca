@@ -19,7 +19,7 @@ int main()
 
     int selectMenu, randomSelect, tentativas, acertos; // Controle dos laços de repetições
     char letra1, letra2, letra3, letra4, letra5, letra6; // Caracteres que compõe a palavra selecionada
-    char lPrint1='_', lPrint2='_', lPrint3='_', lPrint4='_', lPrint5='_', lPrint6='_'; // Caracteres em display
+    char lPrint1, lPrint2, lPrint3, lPrint4, lPrint5, lPrint6; // Caracteres em display
     char inputChar; //Caracter de input do jogador
     // Variáveis para não repetir as palavras
     bool check1=false, check2=false, check3=false, check4=false, check5=false; // Para Rand() não repetir
@@ -46,6 +46,13 @@ int main()
             tentativas = 10;
             acertos = 0;
             checkRand = false;
+            lPrint1 = '_';
+            lPrint2 = '_';
+            lPrint3 = '_';
+            lPrint4 = '_';
+            lPrint5 = '_';
+            lPrint6 = '_';
+            
 
             while(checkRand != true && checkAll < 10)
             {
@@ -56,7 +63,7 @@ int main()
                 {
                     case 1:
                         // "CANETA"
-                        if(check1 ==true)
+                        if(check1 == true)
                         {
                             checkRand = true;
                             break;
@@ -73,7 +80,7 @@ int main()
                         break;
                     case 2:
                         // "TOMADA"
-                        if(check2 ==true)
+                        if(check2 == true)
                         {
                             checkRand = true;
                             break;
@@ -90,7 +97,7 @@ int main()
                         break;
                     case 3:
                         // "TRILHA"
-                        if(check3 ==true)
+                        if(check3 == true)
                         {
                             checkRand = true;
                             break;
@@ -107,7 +114,7 @@ int main()
                         break;
                     case 4:
                         // "ATIRAR"
-                        if(check4 ==true)
+                        if(check4 == true)
                         {
                             checkRand = true;
                             break;
@@ -124,7 +131,7 @@ int main()
                         break;
                     case 5:
                         // "MACACO"
-                        if(check5 ==true)
+                        if(check5 == true)
                         {
                             checkRand = true;
                             break;
@@ -142,7 +149,7 @@ int main()
 
                     case 6:
                         // "CARETA"
-                        if(check6 ==true)
+                        if(check6 == true)
                         {
                             checkRand = true;
                             break;
@@ -159,7 +166,7 @@ int main()
                         break;
                     case 7:
                         // "QUINTA"
-                        if(check7 ==true)
+                        if(check7 == true)
                         {
                             checkRand = true;
                             break;
@@ -176,7 +183,7 @@ int main()
                         break;
                     case 8:
                         // "GOOGLE"
-                        if(check8 ==true)
+                        if(check8 == true)
                         {
                             checkRand = true;
                             break;
@@ -193,7 +200,7 @@ int main()
                         break;
                     case 9:
                         // "DIURNO"
-                        if(check9 ==true)
+                        if(check9 == true)
                         {
                             checkRand = true;
                             break;
@@ -210,7 +217,7 @@ int main()
                         break;
                     case 10:
                         // "SOCIAL"
-                        if(check10 ==true)
+                        if(check10 == true)
                         {
                             checkRand = true;
                             break;
