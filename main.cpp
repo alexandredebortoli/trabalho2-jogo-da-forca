@@ -1,10 +1,10 @@
 /*
-    UNIVALI - Algoritmos e Programação - Rafael Ballotin Martins
-    Trabalho 2 - Jogo da Forca
-    Autores: Alexandre Debortoli de Souza, Paula Gama, Victor Nascimento e Mykaella Teodoro
+    Autores: Alexandre Debortoli de Souza
     Data: Outubro - 2021
+    UNIVALI - Algoritmos e Programação - Professor: Rafael Ballotin Martins
+    Trabalho 2 - Jogo da Forca
 
-    Objetivo: Programando em C++, criaremos um jogo da forca onde uma palavra será selecionada 
+    Objetivo: Programar em C++ um jogo da forca onde uma palavra será selecionada 
     aleatoriamente entre 10 palavras de 6 caracteres e o jogador terá 10 tentativas para descobrir
     todas as letras e consequentemente acertar a palavra.
 */
