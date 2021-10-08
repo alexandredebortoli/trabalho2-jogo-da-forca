@@ -1,5 +1,5 @@
 /*
-    Autores: Alexandre Debortoli de Souza
+    Autor: Alexandre Debortoli de Souza
     Data: Outubro - 2021
     UNIVALI - Algoritmos e Programação - Professor: Rafael Ballotin Martins
     Trabalho 2 - Jogo da Forca
@@ -10,17 +10,22 @@
 */
 #include <iostream>
 #include <time.h>
-#include <locale.h>
+#include <Windows.h>
 using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
+    SetConsoleOutputCP(CP_UTF8);
 
     int selectMenu, randomSelect, tentativas, acertos; // Controle dos laços de repetições
     char letra1, letra2, letra3, letra4, letra5, letra6; // Caracteres que compõe a palavra selecionada
-    char lPrint1='_',lPrint2='_',lPrint3='_',lPrint4='_', lPrint5='_', lPrint6='_'; // Caracteres em display
+    char lPrint1='_', lPrint2='_', lPrint3='_', lPrint4='_', lPrint5='_', lPrint6='_'; // Caracteres em display
     char inputChar; //Caracter de input do jogador
+    // Variáveis para não repetir as palavras
+    bool check1=false, check2=false, check3=false, check4=false, check5=false; // Para Rand() não repetir
+    bool check6=false, check7=false, check8=false, check9=false, check10=false; // Para Rand() não repetir
+    bool checkRand; // Controle caso passe por algum check = true
+    int checkAll=0; // Controle caso todas as palavras sejam utilizadas
     
     do
     {
@@ -29,109 +34,208 @@ int main()
         cout << "1-Jogar / 2-Sobre / 3-Fim\n";
         cin >> selectMenu;
 
+        if(checkAll == 10) // Quando todas as palavras forem usadas...
+        {
+            system("cls");
+            cout << "Não há mais palavras.\n\nObrigado por jogar!\n" << endl;
+            selectMenu = 3; // Sair
+        }
+
         if(selectMenu == 1) // JOGAR
         {
             tentativas = 10;
             acertos = 0;
+            checkRand = false;
 
-            srand(time(NULL));
-            randomSelect = rand() % 10 + 1;
-
-            switch (randomSelect) // Selecao palavra aleatória
+            while(checkRand != true && checkAll < 10)
             {
-                case 1:
-                    // "CANETA"
-                    letra1 = 'C';
-                    letra2 = 'A';
-                    letra3 = 'N';
-                    letra4 = 'E';
-                    letra5 = 'T';
-                    letra6 = 'A';
-                    break;
-                case 2:
-                    // "TOMADA"
-                    letra1 = 'T';
-                    letra2 = 'O';
-                    letra3 = 'M';
-                    letra4 = 'A';
-                    letra5 = 'D';
-                    letra6 = 'A';
-                    break;
-                case 3:
-                    // "TRILHA"
-                    letra1 = 'T';
-                    letra2 = 'R';
-                    letra3 = 'I';
-                    letra4 = 'L';
-                    letra5 = 'H';
-                    letra6 = 'A';
-                    break;
-                case 4:
-                    // "ATIRAR"
-                    letra1 = 'A';
-                    letra2 = 'T';
-                    letra3 = 'I';
-                    letra4 = 'R';
-                    letra5 = 'A';
-                    letra6 = 'R';
-                    break;
-                case 5:
-                    // "MACACO"
-                    letra1 = 'M';
-                    letra2 = 'A';
-                    letra3 = 'C';
-                    letra4 = 'A';
-                    letra5 = 'C';
-                    letra6 = 'O';
-                    break;
-                case 6:
-                    // "CARETA"
-                    letra1 = 'C';
-                    letra2 = 'A';
-                    letra3 = 'R';
-                    letra4 = 'E';
-                    letra5 = 'T';
-                    letra6 = 'A';
-                    break;
-                case 7:
-                    // "QUINTA"
-                    letra1 = 'Q';
-                    letra2 = 'U';
-                    letra3 = 'I';
-                    letra4 = 'N';
-                    letra5 = 'T';
-                    letra6 = 'A';
-                    break;
-                case 8:
-                    // "GOOGLE"
-                    letra1 = 'G', 
-                    letra2 = 'O';
-                    letra3 = 'O';
-                    letra4 = 'G';
-                    letra5 = 'L';
-                    letra6 = 'E';
-                    break;
-                case 9:
-                    // "DIURNO"
-                    letra1 = 'D';
-                    letra2 = 'I';
-                    letra3 = 'U';
-                    letra4 = 'R';
-                    letra5 = 'N';
-                    letra6 = 'O';
-                    break;
-                case 10:
-                    // "SOCIAL"
-                    letra1 = 'S';
-                    letra2 = 'O';
-                    letra3 = 'C';
-                    letra4 = 'I';
-                    letra5 = 'A';
-                    letra6 = 'L';
-                    break;
-                default:
-                    cout << "Número aleatório gerado inválida!" << endl; // Debug do rand()
-                    break;
+                srand(time(NULL));
+                randomSelect = rand() % 10 + 1;
+
+                switch (randomSelect) // Selecao palavra aleatória
+                {
+                    case 1:
+                        // "CANETA"
+                        if(check1 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'C';
+                        letra2 = 'A';
+                        letra3 = 'N';
+                        letra4 = 'E';
+                        letra5 = 'T';
+                        letra6 = 'A';
+
+                        check1 = true;
+                        break;
+                    case 2:
+                        // "TOMADA"
+                        if(check2 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'T';
+                        letra2 = 'O';
+                        letra3 = 'M';
+                        letra4 = 'A';
+                        letra5 = 'D';
+                        letra6 = 'A';
+    
+                        check2 = true;
+                        break;
+                    case 3:
+                        // "TRILHA"
+                        if(check3 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'T';
+                        letra2 = 'R';
+                        letra3 = 'I';
+                        letra4 = 'L';
+                        letra5 = 'H';
+                        letra6 = 'A';
+
+                        check3 = true;
+                        break;
+                    case 4:
+                        // "ATIRAR"
+                        if(check4 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'A';
+                        letra2 = 'T';
+                        letra3 = 'I';
+                        letra4 = 'R';
+                        letra5 = 'A';
+                        letra6 = 'R';
+
+                        check4 = true;
+                        break;
+                    case 5:
+                        // "MACACO"
+                        if(check5 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'M';
+                        letra2 = 'A';
+                        letra3 = 'C';
+                        letra4 = 'A';
+                        letra5 = 'C';
+                        letra6 = 'O';
+
+                        check5 = true;
+                        break;
+
+                    case 6:
+                        // "CARETA"
+                        if(check6 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'C';
+                        letra2 = 'A';
+                        letra3 = 'R';
+                        letra4 = 'E';
+                        letra5 = 'T';
+                        letra6 = 'A';
+
+                        check6 = true;
+                        break;
+                    case 7:
+                        // "QUINTA"
+                        if(check7 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'Q';
+                        letra2 = 'U';
+                        letra3 = 'I';
+                        letra4 = 'N';
+                        letra5 = 'T';
+                        letra6 = 'A';
+
+                        check7 = true;
+                        break;
+                    case 8:
+                        // "GOOGLE"
+                        if(check8 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'G', 
+                        letra2 = 'O';
+                        letra3 = 'O';
+                        letra4 = 'G';
+                        letra5 = 'L';
+                        letra6 = 'E';
+
+                        check8 = true;
+                        break;
+                    case 9:
+                        // "DIURNO"
+                        if(check9 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'D';
+                        letra2 = 'I';
+                        letra3 = 'U';
+                        letra4 = 'R';
+                        letra5 = 'N';
+                        letra6 = 'O';
+
+                        check9 = true;
+                        break;
+                    case 10:
+                        // "SOCIAL"
+                        if(check10 ==true)
+                        {
+                            checkRand = true;
+                            break;
+                        }
+
+                        letra1 = 'S';
+                        letra2 = 'O';
+                        letra3 = 'C';
+                        letra4 = 'I';
+                        letra5 = 'A';
+                        letra6 = 'L';
+
+                        check10 = true;
+                        break;
+                    default:
+                        cout << "Número aleatório gerado inválida!" << endl; // Debug do rand()
+                        checkRand = true;
+                        system("pause");
+                        break;
+                }
+
+                if(checkRand == true)
+                    checkRand = false;
+                else
+                    checkRand = true;
             }
 
             do
@@ -178,6 +282,8 @@ int main()
                 tentativas--;
                 
             } while (tentativas != 0 && acertos != 6);
+
+            checkAll++; // Adiciona número de palavras usadas
 
             // RESULTADOS
             if(tentativas == 0) // PERDEU
