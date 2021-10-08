@@ -10,21 +10,21 @@
 */
 #include <iostream>
 #include <time.h>
-#include <Windows.h>
+#include <locale.h>
 using namespace std;
 
 int main()
 {
-    SetConsoleOutputCP(CP_UTF8);
+    setlocale(LC_ALL, "Portuguese");
 
     int selectMenu, randomSelect, tentativas, acertos; // Controle dos laços de repetições
     char letra1, letra2, letra3, letra4, letra5, letra6; // Caracteres que compõe a palavra selecionada
     char lPrint1, lPrint2, lPrint3, lPrint4, lPrint5, lPrint6; // Caracteres em display
     char inputChar; //Caracter de input do jogador
     // Variáveis para não repetir as palavras
-    bool check1=false, check2=false, check3=false, check4=false, check5=false; // Para Rand() não repetir
-    bool check6=false, check7=false, check8=false, check9=false, check10=false; // Para Rand() não repetir
-    bool checkRand; // Controle caso passe por algum check = true
+    bool check1=false, check2=false, check3=false, check4=false, check5=false;
+    bool check6=false, check7=false, check8=false, check9=false, check10=false; 
+    bool checkRand; // Controle caso rand() repita
     int checkAll=0; // Controle caso todas as palavras sejam utilizadas
     
     do
@@ -41,7 +41,7 @@ int main()
             selectMenu = 3; // Sair
         }
 
-        if(selectMenu == 1) // JOGAR
+        if(selectMenu == 1) /*************************** JOGAR ***************************/
         {
             tentativas = 10;
             acertos = 0;
@@ -53,8 +53,8 @@ int main()
             lPrint5 = '_';
             lPrint6 = '_';
             
-
-            while(checkRand != true && checkAll < 10)
+            // GERAR PALAVRA ALEATÓRIO
+            while(checkRand != true)
             {
                 srand(time(NULL));
                 randomSelect = rand() % 10 + 1;
@@ -234,17 +234,17 @@ int main()
                         break;
                     default:
                         cout << "Número aleatório gerado inválida!" << endl; // Debug do rand()
-                        checkRand = true;
                         system("pause");
                         break;
                 }
 
                 if(checkRand == true)
-                    checkRand = false;
+                    checkRand = false; // Repetir o loop pois rand() repetiu
                 else
-                    checkRand = true;
+                    checkRand = true; // Sair do loop
             }
 
+            // INTERAÇÃO DO JOGO
             do
             {
                 system("cls");
@@ -255,32 +255,33 @@ int main()
                 cout << "Digite uma letra: ";
                 cin >> inputChar;
 
-                if(inputChar == letra1)
+                // Checar se char digitado corresponde a algum char da palavra
+                if(inputChar == letra1 && lPrint1 == '_')
                 {
                     lPrint1 = inputChar;
                     acertos++;
                 }
-                if(inputChar == letra2)
+                if(inputChar == letra2 && lPrint2 == '_')
                 {
                     lPrint2 = inputChar;
                     acertos++;
                 }
-                if(inputChar == letra3)
+                if(inputChar == letra3 && lPrint3 == '_')
                 {
                     lPrint3 = inputChar;
                     acertos++;
                 }
-                if(inputChar == letra4)
+                if(inputChar == letra4 && lPrint4 == '_')
                 {
                     lPrint4 = inputChar;
                     acertos++;
                 }
-                if(inputChar == letra5)
+                if(inputChar == letra5 && lPrint5 == '_')
                 {
                     lPrint5 = inputChar;
                     acertos++;
                 }
-                if(inputChar == letra6)
+                if(inputChar == letra6 && lPrint6 == '_')
                 {
                     lPrint6 = inputChar;
                     acertos++;
@@ -293,23 +294,22 @@ int main()
             checkAll++; // Adiciona número de palavras usadas
 
             // RESULTADOS
-            if(tentativas == 0) // PERDEU
-                cout << "\nPERDEU.\n" << endl;
+            system("cls");
+            cout << "Tentativas: " << tentativas << endl;
+            cout << "Acertos: " << acertos << endl;
+            cout << endl;
+            cout << lPrint1 << " " << lPrint2 << " " << lPrint3 << " " << lPrint4 << " " << lPrint5 << " " << lPrint6 << endl;
 
             if(acertos == 6) // GANHOU
-            {
-                system("cls");
-                cout << "Tentativas: " << tentativas << endl;
-                cout << "Acertos: " << acertos << endl;
-                cout << endl;
-                cout << lPrint1 << " " << lPrint2 << " " << lPrint3 << " " << lPrint4 << " " << lPrint5 << " " << lPrint6 << endl;
-                cout << "\nGANHOU!\n" << endl;;
-            }
+                cout << "\nGANHOU!\n" << endl;
+            else if(tentativas == 0) // PERDEU
+                cout << "\nPERDEU.\n" << endl;
 
             system("pause");
         }
-        else if(selectMenu == 2) // SOBRE
+        else if(selectMenu == 2) /*************************** SOBRE ***************************/
         {
+            system("cls");
             cout << "--- Equipe de Desenvolvimento ---\n"; // Autores
             cout << "Alexandre Debortoli de Souza\n";
             cout << "Paula Gama\n";
@@ -329,7 +329,7 @@ int main()
             system("pause");
         }
 
-    } while (selectMenu != 3); // FIM
+    } while (selectMenu != 3); /*************************** FIM ***************************/
     
     return 0;
 }
