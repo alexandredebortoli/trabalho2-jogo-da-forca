@@ -10,12 +10,12 @@
 */
 #include <iostream>
 #include <time.h>
-#include <Windows.h>
+#include <locale.h>
 using namespace std;
 
 int main()
 {
-    SetConsoleOutputCP(CP_UTF8);
+    setlocale(LC_ALL, "Portuguese");
 
     int selectMenu, randomSelect, tentativas, acertos; // Controle dos laços de repetições
     char letra1, letra2, letra3, letra4, letra5, letra6; // Caracteres que compõe a palavra selecionada
