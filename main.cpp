@@ -1,5 +1,5 @@
 /*
-    Autor: Alexandre Debortoli de Souza
+    Autores: Alexandre Debortoli de Souza, Paula Gama, Victor Nascimento, Mykaella Teodoro
     Data: Outubro - 2021
     UNIVALI - Algoritmos e Programação - Professor: Rafael Ballotin Martins
     Trabalho 2 - Jogo da Forca
@@ -21,11 +21,12 @@ int main()
     char letra1, letra2, letra3, letra4, letra5, letra6; // Caracteres que compõe a palavra selecionada
     char lPrint1, lPrint2, lPrint3, lPrint4, lPrint5, lPrint6; // Caracteres em display
     char inputChar; //Caracter de input do jogador
+
     // Variáveis para não repetir as palavras
     bool check1=false, check2=false, check3=false, check4=false, check5=false;
     bool check6=false, check7=false, check8=false, check9=false, check10=false; 
-    bool checkRand; // Controle caso rand() repita
-    int checkAll=0; // Controle caso todas as palavras sejam utilizadas
+    bool checkRand; // Controle do loop do gerador de número aleatório, repete caso caia em um check# = true.
+    int numPalavrasUsadas=0; // Controle de termino do jogo, caso todas as 10 palavras sejam utilizadas
     
     do
     {
@@ -34,7 +35,7 @@ int main()
         cout << "1-Jogar / 2-Sobre / 3-Fim\n";
         cin >> selectMenu;
 
-        if(checkAll == 10) // Quando todas as palavras forem usadas...
+        if(numPalavrasUsadas == 10) // Quando todas as palavras forem usadas...
         {
             system("cls");
             cout << "Não há mais palavras.\n\nObrigado por jogar!\n" << endl;
@@ -249,7 +250,7 @@ int main()
             {
                 system("cls");
                 cout << "Tentativas: " << tentativas << endl;
-                cout << "Acertos: " << acertos << endl;
+                cout << "Acertos: " << acertos << " / 6" << endl;
                 cout << endl;
                 cout << lPrint1 << " " << lPrint2 << " " << lPrint3 << " " << lPrint4 << " " << lPrint5 << " " << lPrint6 << endl;
                 cout << "Digite uma letra: ";
@@ -291,7 +292,7 @@ int main()
                 
             } while (tentativas != 0 && acertos != 6);
 
-            checkAll++; // Adiciona número de palavras usadas
+            numPalavrasUsadas++; // Adiciona número de palavras usadas
 
             // RESULTADOS
             system("cls");
